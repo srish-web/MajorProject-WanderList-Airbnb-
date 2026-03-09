@@ -1,0 +1,26 @@
+{
+  "name": "majorproject-wanderlist-airbnb-",
+  "version": "1.0.0",
+  "description": "This is a fullStack Airbnb clone project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srish-web/MajorProject-WanderList-Airbnb-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/srish-web/MajorProject-WanderList-Airbnb-/issues"
+  },
+  "homepage": "https://github.com/srish-web/MajorProject-WanderList-Airbnb-#readme",
+  "dependencies": {
+    "ejs": "^5.0.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.2.4"
+  }
+}
