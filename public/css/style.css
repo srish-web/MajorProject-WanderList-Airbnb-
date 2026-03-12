@@ -1,0 +1,237 @@
+body{
+    font-family: "Plus Jakarta Sans", sans-serif !important;
+    display:flex !important;
+    flex-direction: column !important;
+    min-height: 100vh !important;
+}
+.container{
+    flex:1 !important;
+}
+.listing-link{
+    text-decoration: none;
+}
+/* Navbar container */
+.airbnb-navbar{
+    min-height: 5rem;
+    height:auto;
+    background-color: white;
+    border-bottom: 1px solid #eaeaea;
+    padding: 12px 20px;
+}
+
+/* Center nav items */
+.nav-center{
+    gap: 35px;
+}
+
+/* Nav links */
+.nav-item-custom{
+    font-weight: 500;
+    font-size: 16px;
+    color: #222 !important;
+    position: relative;
+    transition: all 0.25s ease;
+}
+
+/* Icon spacing */
+.nav-item-custom i{
+    margin-right: 6px;
+}
+
+/* Hover lift effect */
+.nav-item-custom:hover{
+    transform: translateY(-2px);
+    color: #ff385c !important;
+}
+
+/* Animated underline */
+.nav-item-custom::after{
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #ff385c;
+    left: 0;
+    bottom: -4px;
+    transition: width 0.3s ease;
+}
+
+.nav-item-custom:hover::after{
+    width: 100%;
+}
+
+/* Logo styling */
+.logo-icon{
+    font-size: 2rem !important;
+    color: #ff385c !important;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Logo hover animation */
+.logo-icon:hover{
+    transform: rotate(-8deg) scale(1.1);
+    color: #e61e4d !important;
+}
+
+/* Smooth icon animation */
+.logo-icon i{
+    transition: transform 0.4s ease;
+}
+
+.logo-icon:hover i{
+    transform: rotate(10deg);
+}
+
+/* Footer container */
+footer{
+    background-color: #f7f7f7;
+    border-top: 1px solid #dddddd;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Main footer content */
+.f-info{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    color: #222;
+    font-size: 14px;
+}
+
+/* Social icons container */
+.f-info-socials{
+    display: flex;
+    justify-content: center;
+    gap: 22px;
+}
+
+/* Social icons styling */
+.f-info-socials i{
+    font-size: 20px;
+    color: #222;
+    cursor: pointer;
+    transition: transform 0.25s ease, color 0.25s ease;
+}
+
+/* Social icons hover */
+.f-info-socials i:hover{
+    transform: translateY(-3px) scale(1.1);
+    color: #ff385c;   /* Airbnb pink */
+}
+
+/* Privacy & Terms container */
+.f-info-links{
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+}
+
+/* Links styling */
+.f-info-links a{
+    text-decoration: none;
+    color: #222;
+    position: relative;
+    font-weight: 500;
+}
+
+/* Hover underline animation */
+.f-info-links a::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%;
+    height: 1.5px;
+    background-color: #222;
+    transition: width 0.3s ease;
+}
+
+/* On hover */
+.f-info-links a:hover::after{
+    width: 100%;
+}
+
+/* ----------------------------------------------------------------------- */
+/* Card container spacing */
+.listing-container{
+    margin-top: 20px;
+    margin-left: -10px !important;
+    margin-right: -10px !important;
+}
+
+/* Card styling */
+.listing-card{
+    border: none;
+    border-radius: 14px;
+    overflow: hidden;
+    background-color: white;
+    transition: box-shadow 0.25s ease;
+    cursor: pointer;
+    /* margin-left: 5px !important; */
+    /* margin-right: 5px !important; */
+}
+
+/* Card hover effect */
+.listing-card:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.12);
+}
+
+/* Image styling */
+.card-img-top{
+    height: 240px;
+    object-fit: cover;
+    border-radius: 14px;
+    /* transition: transform 0.35s ease; */
+}
+
+/* Image zoom effect */
+/* .listing-card:hover .card-img-top{
+    transform: scale(1);
+} */
+
+/* Card body */
+.card-body{
+    /* padding: 14px 10px; */
+}
+
+/* Title */
+.listing-title{
+    font-weight: 600;
+    font-size: 16px;
+    color: #222;
+}
+
+/* Price */
+.listing-price{
+    font-size: 15px;
+    color: #555;
+}
+
+/* Add spacing between cards */
+/* .row .col{
+    display: flex;
+    justify-content: center;
+} */
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+/* new form styling ----------------------------------------------------------------------------------------*/
+.transition-button {
+    transition: all 0.3s ease;
+    background-color: #fe424d !important;
+    border: none !important;
+}
+.transition-button:hover {
+    background-color: #333;
+    transform: scale(1.01);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
