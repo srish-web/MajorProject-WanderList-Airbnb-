@@ -5,6 +5,8 @@ const listing = require("./models/listing.js")
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
+const wrapAsync = require("./utils/wrapAsync.js");
+const expressError = require("./utils/expressError.js");
 
 
 app.set("view engine", "ejs");
@@ -43,33 +45,34 @@ app.get("/", (req, res)=>{
 // });
 
 //index route
-app.get("/listings", async (req, res)=>{
+app.get("/listings", wrapAsync(async (req, res)=>{
     const allListings = await listing.find({});
     res.render("listings/index.ejs", {allListings});
         // .then(res =>{
         //     console.log(res);
         // });
-});
+}));
 
 //create new route
 app.get("/listings/new", (req, res)=>{
     res.render("listings/new.ejs");
 });
 
-app.post("/listings", async (req, res)=>{
+app.post("/listings", wrapAsync(async (req, res)=>{
     // let listing = req.body.listing;
     // console.log(listing);
     const newListing = new listing(req.body.listing);
     await newListing.save();
     res.redirect("/listings");
-});
+    
+}));
 
 //show
-app.get("/listings/:id", async (req, res)=>{
+app.get("/listings/:id", wrapAsync(async (req, res)=>{
     let {id} = req.params;
     const data = await listing.findById(id);
     res.render("listings/show.ejs", {data});
-});
+}));
 
 //update route
 //step1:get request->edit route
@@ -94,6 +97,23 @@ app.delete("/listings/:id", async (req, res)=>{
     res.redirect(`/listings`);
 });
 
+// Put this near the end, before your error-handling middleware
+app.all('{*any}', (req, res, next) => {
+    const err = new expressError(404, 'Page Not Found');
+    err.statusCode = 404;
+    next(err);        // ← forwards to your error handler
+});
+
+//middleware to handle error
+app.use((err, req, res ,next)=>{
+    let {statusCode=500, message="catched the error"} = err;
+    res.status(404).render("error.ejs", { message });
+});
+
+// app.all('/secret', (err, req, res, next) => {
+//     message = "404 Page Not Found";
+//     res.render("error.ejs", {message});
+// })
 
 
 app.listen(8080, ()=>{
