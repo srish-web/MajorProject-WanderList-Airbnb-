@@ -1,2 +1,2 @@
 # MajorProject-WanderList-Airbnb-
-This is a fullStack Airbnb clone project.
+This is a fullStack Airbnb project.
