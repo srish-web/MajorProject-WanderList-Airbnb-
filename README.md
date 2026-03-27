@@ -162,10 +162,8 @@ MajorProject-WanderList-Airbnb/
 │   ├── ExpressError.js         # Custom error class
 │   └── wrapAsync.js            # Async error wrapper
 │
-├── cloudConfig.js              # Cloudinary + Multer setup
 ├── schema.js                   # Joi validation schemas
 ├── app.js                      # Express app entry point
-├── .env                        # Environment variables (⚠️ not committed)
 └── package.json
 ```
 
