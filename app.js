@@ -1,16 +1,13 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const listing = require("./models/listing.js")
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
-const wrapAsync = require("./utils/wrapAsync.js");
 const expressError = require("./utils/expressError.js");
-const { listingSchema, reviewSchema} = require("./schema.js");
-const Review = require("./models/review.js");
-const review = require("./models/review.js");
 
+const listings = require("./routes/listing.js");
+const Reviews = require("./routes/review.js");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -34,30 +31,9 @@ app.get("/", (req, res)=>{
     res.send("Root setup completed");
 });
 
-const validateListing = (req, res, next)=>{
-    console.log(req.body);
-    let {error} = listingSchema.validate(req.body);
-    if(error){
-        let errmsg = error.details.map((el)=>el.message).join(",");
-        throw new expressError(400, errmsg);
-    }else{
-        next();
-    }
-};
-const validateReview = (req, res, next)=>{
-    console.log(req.body);
-    let {error} = reviewSchema.validate(req.body);
-    console.log(error);
-    if(error){
-        console.log("in if")
-        let errmsg = error.details.map((el)=>el.message).join(",");
-        throw new expressError(400, errmsg);
-    }else{
-        console.log("in else");
-        next();
-    }
-};
 
+app.use("/listings", listings);
+app.use("/listings/:id/reviews", Reviews);
 
 //test route
 // app.get("/testList", async (req, res)=>{
@@ -71,80 +47,6 @@ const validateReview = (req, res, next)=>{
 //     await sample.save();
 //     res.send("successful");
 // });
-
-//index route
-app.get("/listings", wrapAsync(async (req, res)=>{
-    const allListings = await listing.find({});
-    res.render("listings/index.ejs", {allListings});
-        // .then(res =>{
-        //     console.log(res);
-        // });
-}));
-
-//create new route
-app.get("/listings/new", (req, res)=>{
-    res.render("listings/new.ejs");
-});
-
-app.post("/listings", validateListing, wrapAsync(async (req, res)=>{
-    // let listing = req.body.listing;
-    // console.log(listing);
-    
-    const newListing = new listing(req.body.listing);
-    await newListing.save();
-    res.redirect("/listings");
-    
-}));
-
-//show
-app.get("/listings/:id", wrapAsync(async (req, res)=>{
-    let {id} = req.params;
-    const data = await listing.findById(id).populate("reviews");
-    res.render("listings/show.ejs", {data});
-}));
-
-//update route
-//step1:get request->edit route
-app.get("/listings/:id/edit", async (req, res)=>{
-    console.log("in the edit route.");
-    let {id} = req.params;
-    const data = await listing.findById(id);
-    res.render("listings/edit.ejs", {data});
-});
-
-//step2:put request
-app.put("/listings/:id", validateListing, wrapAsync(async (req, res)=>{
-    let {id} = req.params;
-    await listing.findByIdAndUpdate(id, {...req.body.listing});
-    res.redirect(`/listings/${id}`);
-}));
-//delete route
-app.delete("/listings/:id", async (req, res)=>{
-    let {id} = req.params;
-    let deletedListing = await listing.findByIdAndDelete(id);
-    console.log(deletedListing);
-    res.redirect(`/listings`);
-});
-
-//reviews
-//post route
-app.post("/listings/:id/reviews", validateReview, wrapAsync(async(req, res)=>{
-    let Listing = await listing.findById(req.params.id);
-    console.log("in route");
-    let newReview = new Review(req.body.review);
-    Listing.reviews.push(newReview);
-    await newReview.save();
-    await Listing.save();
-    res.redirect(`/listings/${req.params.id}`);
-}));
-//delete review route
-app.delete("/lisitngs/:id/reviews/:reviewId", wrapAsync(async(req, res)=>{
-    let {id, reviewId} = req.params;
-    await listing.findByIdAndUpdate(id, {$pull: {reviews: reviewId}});
-    await review.findByIdAndDelete(reviewId);
-    res.redirect(`/listings/${id}`);
-}));
-
 // Put this near the end, before your error-handling middleware
 app.all('{*any}', (req, res, next) => {
     const err = new expressError(404, 'Page Not Found');
@@ -154,6 +56,7 @@ app.all('{*any}', (req, res, next) => {
 
 //middleware to handle error
 app.use((err, req, res ,next)=>{
+    console.log(err);
     let {statusCode=500, message="catched the error"} = err;
     res.status(statusCode).render("error.ejs", { message });
 });

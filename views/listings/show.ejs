@@ -89,7 +89,7 @@
                             </div>
                             <h4>UserName</h4>
                             <p><%= review.comment %></p>
-                            <form action="/lisitngs/<%= data._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
+                            <form action="/listings/<%= data._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
                                 <button class="btn btn-sm btn-dark">Delete</button>
                             </form>
                         </div>
