@@ -1,0 +1,56 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<div class="row min-vh-100 align-items-center justify-content-center">
+    <div class="col-12 col-sm-8 col-md-6 col-lg-4">
+
+        <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-body p-4 p-md-5">
+
+                <h1 class="card-title text-center fw-bold mb-1">Login</h1>
+                <p class="text-center text-muted mb-4">Login to WanderList</p>
+
+                <form action="/login" method="POST" class="needs-validation" novalidate>
+
+                    <div class="mb-3">
+                        <label for="username" class="form-label fw-semibold">Username</label>
+                       
+                            <input
+                                type="text"
+                                name="username"
+                                id="username"
+                                class="form-control  ps-0"
+                                placeholder=" e.g. johndoe"
+                                required
+                            >
+                    </div>
+                    <div class="mb-4">
+                        <label for="password" class="form-label fw-semibold">Password</label>
+                            <input
+                                type="password"
+                                name="password"
+                                id="password"
+                                class="form-control ps-0"
+                                placeholder=" Min. 8 characters"
+                                required
+                            >
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-success btn-lg fw-semibold rounded-3">
+                            Login
+                        </button>
+                    </div>
+
+                </form>
+
+                <hr class="my-4">
+                <p class="text-center text-muted mb-0 small">
+                    New User ?
+                    <a href="/signup" class="text-success fw-semibold text-decoration-none">Signup</a>
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+</div>
