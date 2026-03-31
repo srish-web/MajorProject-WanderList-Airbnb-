@@ -26,5 +26,26 @@
       </div>
     </div>
 
+    <div class="collapse navbar-collapse ms-auto" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        <%if(!currUser){%>
+
+        
+        <a class="nav-link nav-item-custom" href="/signup">
+          SignUp
+        </a>
+
+        <a class="nav-link nav-item-custom" href="/login">
+          Login
+        </a>
+        <%}%>
+        <%if(currUser){%>
+          <a class="nav-link nav-item-custom" href="/logout">
+          logout
+        </a>
+        <%}%>   
+      </div>
+    </div>
+
   </div>
 </nav>

@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-const path = require("path");
+const path = require("path"); 
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const expressError = require("./utils/expressError.js");
@@ -60,6 +60,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use((req, res, next)=>{
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
+    res.locals.currUser = req.user;
     console.log(res.locals.success);
     next();
 });

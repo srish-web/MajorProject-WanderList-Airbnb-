@@ -8,6 +8,7 @@
             <img src="<%=data.image%>" class="card-img-top show-img" alt="listing-image">
             <div class="card-body">
             <p class="card-text">
+                Created By: <i><%=data.owner.username%></i><br>
                 <%= data.description %><br>
                 &#8377; <%= data.price.toLocaleString("en-IN") %><br>
                 <%= data.location %><br>
@@ -17,20 +18,23 @@
         </div>
     </div>
     <div class="row">
-        <div class="btns">
-            <a href="/listings/<%= data._id %>/edit" class="btn btn-dark mb-2 transition-button offset-3">Edit</a>  
-            <!-- </div>
-            <div class="col-1"> -->
-            <form action="/listings/<%= data._id %>?_method=DELETE" method="post">
-                <button class="btn btn-dark mb-2 transition-button offset-3">Delete</button>
-            </form>
-            
-        </div>
+        <%if(currUser && data.owner._id.equals(currUser._id)){%>
+            <div class="btns">
+                <a href="/listings/<%= data._id %>/edit" class="btn btn-dark mb-2 mt-2 transition-button offset-3">Edit</a>  
+                <!-- </div>
+                <div class="col-1"> -->
+                <form action="/listings/<%= data._id %>?_method=DELETE" method="post">
+                    <button class="btn btn-dark mb-2 mt-2 transition-button offset-3">Delete</button>
+                </form>
+                
+            </div>
+        <%}%>
         <br><hr>
     </div>
     <div class="container">
         <div class="row">
             <div class=" col-md-8  mx-auto">
+                <%if(currUser){%>
                 <div class="p-4">
                     <h4 class="mb-4 ">Leave a Review</h4>
 
@@ -74,6 +78,7 @@
 
                     </form>
                 </div>
+            <%}%>
                 <!-- review ka section -->
                 <div class="container mt-4">
                     <h4 class="mb-3 ms-3">All Reviews</h4>                
@@ -87,7 +92,7 @@
                                 </h6>
                                 <small class="text-muted">Rating</small>
                             </div>
-                            <h4>UserName</h4>
+                            <h4>@<%= review.author.username %></h4>
                             <p><%= review.comment %></p>
                             <form action="/listings/<%= data._id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
                                 <button class="btn btn-sm btn-dark">Delete</button>
