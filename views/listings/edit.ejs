@@ -4,7 +4,12 @@
     <div class="col-8 offset-2">
         <h2 class="mb-4">Edit Your Listing</h2>
 
-        <form method="POST" action="/listings/<%= data._id %>?_method=PUT" novalidate class="needs-validation">
+        <form 
+            method="POST" 
+            action="/listings/<%= data._id %>?_method=PUT" 
+            novalidate class="needs-validation"
+            enctype="multipart/form-data"
+        >
 
             <div class="form-floating mb-3">
                 <input 
@@ -31,16 +36,19 @@
                 <label for="description">Description</label>
                 <div class="invalid-feedback">Please enter a short description.</div>
             </div>
-
+            <div class="mb-3 shadow-sm border-2 originalImg">
+                Original Listing Image<br>
+                <img src="<%=data.image.url%>" alt="listing_img">
+            </div>
             <div class="form-floating mb-3">
                 <input 
-                    type="text" 
+                    type="file" 
                     name="listing[image]" 
                     id="image" 
                     placeholder="Enter URL" 
                     class="form-control shadow-sm border-2 transition-input" 
-                    value="<%= data.image %>">
-                <label for="image">Image Link (URL)</label>
+                >
+                <label for="image" class="p-2">Upload New Image</label>
                 <!-- Optional: you can add <div class="invalid-feedback">...</div> if you want to enforce it -->
             </div>
 

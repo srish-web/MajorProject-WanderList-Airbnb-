@@ -35,7 +35,6 @@ module.exports.isReviewAuthor = async (req, res, next)=>{
     next();
 }
 module.exports.validateListing = (req, res, next)=>{
-    console.log(req.body);
     let {error} = listingSchema.validate(req.body);
     if(error){
         let errmsg = error.details.map((el)=>el.message).join(",");
@@ -45,9 +44,9 @@ module.exports.validateListing = (req, res, next)=>{
     }
 };
 module.exports.validateReview = (req, res, next)=>{
-    console.log(req.body);
     let {error} = reviewSchema.validate(req.body);
-    console.log(error);
+
+    if(error) console.log(error);
     if(error){
         // console.log("in if")
         let errmsg = error.details.map((el)=>el.message).join(",");

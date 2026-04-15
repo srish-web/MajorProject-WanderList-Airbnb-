@@ -3,6 +3,9 @@ const router = express.Router();
 const wrapAsync = require("../utils/wrapAsync.js");
 const {isLoggedIn, isOwner, validateListing} = require("../middleware.js");
 const lisitngController = require("../controllers/listings.js");
+const multer = require("multer");
+const {storage} = require("../cloudConfig.js");
+const upload = multer({storage});
 
 //index route
 router
@@ -10,10 +13,10 @@ router
     .get(wrapAsync(lisitngController.index))
     .post(
         isLoggedIn, 
-        validateListing, 
-        wrapAsync(lisitngController.SaveListing
-    ));
-
+        upload.single('listing[image]'),
+        validateListing,
+        wrapAsync(lisitngController.SaveListing)
+    );
 
 //create new route
 router.get("/new",isLoggedIn, lisitngController.createNew);
@@ -24,7 +27,8 @@ router
     .get(wrapAsync(lisitngController.showListing))
     .put(
         isLoggedIn, 
-        isOwner, 
+        isOwner,
+        upload.single('listing[image]'), 
         validateListing, 
         wrapAsync(lisitngController.updateListing
 
@@ -35,7 +39,7 @@ router
 router.get("/:id/edit", isLoggedIn, isOwner, lisitngController.EditForm);
 
 //step2:put request
-router;
+
 //delete route
 router.delete("/:id", isLoggedIn, isOwner, lisitngController.deleteListing);
 
