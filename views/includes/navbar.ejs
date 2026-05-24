@@ -12,36 +12,38 @@
 
     <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
       <div class="navbar-nav nav-center">
-        <a class="nav-link nav-item-custom" href="/">
+        <a class="nav-link nav-item-custom" href="/listings">
           <i class="fa-solid fa-house"></i> Home
         </a>
 
-        <a class="nav-link nav-item-custom" href="/listings">
-          <i class="fa-solid fa-list"></i> All Listings
+        <a class="nav-link nav-item-custom" href="/listings/experiences">
+          <i class="fa-solid fa-camera"></i> Experiences
         </a>
-
-        <a class="nav-link nav-item-custom" href="/listings/new">
-          <i class="fa-solid fa-plus"></i> Add Listing
+        <a class="nav-link nav-item-custom" href="/listings/services">
+          <i class="fa-solid fa-bell-concierge"></i> Services
         </a>
       </div>
     </div>
 
     <div class="collapse navbar-collapse ms-auto" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
+         <a class="nav-link nav-item-custom" href="/listings/new">
+          Airbnb your Home
+        </a>
         <%if(!currUser){%>
 
         
         <a class="nav-link nav-item-custom" href="/signup">
-          SignUp
+          <b>SignUp</b>
         </a>
 
         <a class="nav-link nav-item-custom" href="/login">
-          Login
+          <b>Login</b>
         </a>
         <%}%>
         <%if(currUser){%>
           <a class="nav-link nav-item-custom" href="/logout">
-          logout
+          <b>Logout</b>
         </a>
         <%}%>   
       </div>

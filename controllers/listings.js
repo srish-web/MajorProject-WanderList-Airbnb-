@@ -1,7 +1,15 @@
 const listing = require("../models/listing");
-module.exports.index = async (req, res)=>{
+module.exports.homes = async (req, res)=>{
     const allListings = await listing.find({});
-    res.render("listings/index.ejs", {allListings});
+    res.render("listings/homes.ejs", {allListings});
+};
+module.exports.experiences = async (req, res)=>{
+    const allListings = await listing.find({});
+    res.render("listings/experiences.ejs", {allListings});
+};
+module.exports.services = async (req, res)=>{
+    const allListings = await listing.find({});
+    res.render("listings/services.ejs", {allListings});
 };
 
 module.exports.createNew = (req, res)=>{

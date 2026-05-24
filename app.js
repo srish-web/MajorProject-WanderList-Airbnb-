@@ -48,9 +48,7 @@ const sessionOptions = {
         httpOnly: true,
     }
 };
-app.get("/", (req, res)=>{
-    res.send("Root setup completed");
-});
+
 
 app.use(session(sessionOptions));
 app.use(flash());
@@ -77,6 +75,9 @@ app.use((req, res, next)=>{
 //     let registeredUser = await User.register(fakeUser, "passwordUser-1");
 //     res.send(registeredUser);
 // });
+app.get("/", (req, res)=>{
+    res.render("Introduction.ejs");
+});
 
 app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", ReviewRouter);

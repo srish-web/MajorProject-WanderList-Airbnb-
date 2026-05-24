@@ -8,15 +8,22 @@ const {storage} = require("../cloudConfig.js");
 const upload = multer({storage});
 
 //index route
-router
+router 
     .route("/")
-    .get(wrapAsync(lisitngController.index))
+    .get(wrapAsync(lisitngController.homes))
     .post(
         isLoggedIn, 
         upload.single('listing[image]'),
         validateListing,
         wrapAsync(lisitngController.SaveListing)
     );
+router
+    .route("/experiences")
+    .get(wrapAsync(lisitngController.experiences))
+router
+    .route("/services")
+    .get(wrapAsync(lisitngController.services))
+    
 
 //create new route
 router.get("/new",isLoggedIn, lisitngController.createNew);
