@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "22.14.0"
+  },
   "name": "majorproject-wanderlist-airbnb-",
   "version": "1.0.0",
   "description": "This is a fullStack Airbnb clone project.",
@@ -21,6 +24,7 @@
   "dependencies": {
     "cloudinary": "^1.41.0",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^6.0.0",
     "dotenv": "^17.4.1",
     "ejs": "^5.0.1",
     "ejs-mate": "^4.0.0",
