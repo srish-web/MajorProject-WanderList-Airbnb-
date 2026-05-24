@@ -1,53 +1,141 @@
-<nav class="navbar navbar-expand-md airbnb-navbar sticky-top">
-  <div class="container-fluid">
+<nav class="navbar navbar-expand-lg airbnb-navbar">
 
-    <!-- Logo -->
-    <a class="navbar-brand logo-icon" href="/">
-      <i class="fa-solid fa-compass-drafting"></i>
-    </a>
+  <div class="container-fluid flex-column">
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+    <!-- =========================
+         TOP ROW
+    ========================== -->
 
-    <div class="collapse navbar-collapse justify-content-center" id="navbarNavAltMarkup">
-      <div class="navbar-nav nav-center">
-        <a class="nav-link nav-item-custom" href="/listings">
-          <i class="fa-solid fa-house"></i> Home
-        </a>
+    <div class="navbar-top-row">
 
-        <a class="nav-link nav-item-custom" href="/listings/experiences">
-          <i class="fa-solid fa-camera"></i> Experiences
-        </a>
-        <a class="nav-link nav-item-custom" href="/listings/services">
-          <i class="fa-solid fa-bell-concierge"></i> Services
-        </a>
+      <!-- Logo -->
+      <a class="navbar-brand logo-icon" href="/">
+        <i class="fa-solid fa-compass-drafting"></i>
+      </a>
+
+      <!-- Mobile Toggle -->
+      <button class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- NAVBAR CONTENT -->
+      <div class="collapse navbar-collapse justify-content-between w-100"
+           id="navbarContent">
+
+        <!-- CENTER NAV -->
+        <div class="navbar-nav nav-center mx-auto">
+
+          <a class="nav-link nav-item-custom" href="/listings">
+            <i class="fa-solid fa-house"></i>
+            Homes
+          </a>
+
+          <a class="nav-link nav-item-custom"
+             href="/listings/experiences">
+            <i class="fa-solid fa-camera"></i>
+            Experiences
+          </a>
+
+          <a class="nav-link nav-item-custom"
+             href="/listings/services">
+            <i class="fa-solid fa-bell-concierge"></i>
+            Services
+          </a>
+
+        </div>
+
+        <!-- RIGHT ACTIONS -->
+        <div class="navbar-nav nav-actions">
+
+          <a class="nav-link nav-item-custom"
+             href="/listings/new">
+            Airbnb your home
+          </a>
+
+          <% if(!currUser){ %>
+
+          <a class="nav-link nav-item-custom"
+             href="/signup">
+            Sign Up
+          </a>
+
+          <a class="nav-link nav-item-custom"
+             href="/login">
+            Login
+          </a>
+
+          <% } %>
+
+          <% if(currUser){ %>
+
+          <a class="nav-link nav-item-custom"
+             href="/logout">
+            Logout
+          </a>
+
+          <% } %>
+
+        </div>
+
       </div>
     </div>
 
-    <div class="collapse navbar-collapse ms-auto" id="navbarNavAltMarkup">
-      <div class="navbar-nav ms-auto">
-         <a class="nav-link nav-item-custom" href="/listings/new">
-          Airbnb your Home
-        </a>
-        <%if(!currUser){%>
+    <!-- =========================
+         SEARCH BAR ROW
+    ========================== -->
 
-        
-        <a class="nav-link nav-item-custom" href="/signup">
-          <b>SignUp</b>
-        </a>
+    <div class="search-row">
 
-        <a class="nav-link nav-item-custom" href="/login">
-          <b>Login</b>
-        </a>
-        <%}%>
-        <%if(currUser){%>
-          <a class="nav-link nav-item-custom" href="/logout">
-          <b>Logout</b>
-        </a>
-        <%}%>   
+      <div class="search-bar">
+
+        <!-- WHERE -->
+        <div class="search-field">
+          <label for="destination">Where</label>
+          <input type="text"
+                 id="destination"
+                 placeholder="Search destinations">
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- WHEN -->
+        <div class="search-field">
+          <label for="dates">When</label>
+          <input type="text"
+                 id="dates"
+                 placeholder="Add dates">
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- WHO -->
+        <div class="search-field">
+          <label for="guests">Who</label>
+          <input type="text"
+                 id="guests"
+                 placeholder="Add guests">
+        </div>
+
+        <!-- SEARCH BUTTON -->
+        <button class="search-btn" aria-label="Search">
+
+          <svg viewBox="0 0 24 24">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21"
+                  y1="21"
+                  x2="16.65"
+                  y2="16.65"></line>
+          </svg>
+
+        </button>
+
       </div>
+
     </div>
 
   </div>
+
 </nav>
